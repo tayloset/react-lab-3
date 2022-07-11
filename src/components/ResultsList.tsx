@@ -8,12 +8,14 @@ interface Props {
 
 const ResultsList = ({ gifsArray }: Props) => {
   return (
-    <ul className="ResultsList">
+    <div className="ResultsList">
       <h2>Results</h2>
-      {gifsArray.map((gif) => (
-        <Result gif={gif} />
-      ))}
-    </ul>
+      <ul>
+        {gifsArray.map((gif) => (
+          <Result gif={gif} key={gif.id} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

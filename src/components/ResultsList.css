@@ -4,3 +4,9 @@ ul {
   background-color: black;
   color: #d9d9d9;
 }
+
+.ResultList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

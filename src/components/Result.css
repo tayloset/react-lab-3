@@ -11,3 +11,12 @@
   color: #28b39d;
   text-decoration: none;
 }
+
+.Result .links-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Result .favorite {
+  color: red;
+}

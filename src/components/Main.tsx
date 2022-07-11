@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import Gif from "../models/Gif";
-import GiphyResponse from "../models/GiphyResponse";
 import { getSearchTerm, getTrendingGifs } from "../services/GiphyService";
 import "./Main.css";
-import Result from "./Result";
 import ResultsList from "./ResultsList";
 import SearchForm from "./SearchForm";
 
 const Main = () => {
   const [gifs, setGifs] = useState<Gif[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+
+  //useLocation().search gives ?term=cat
+  //new URLSearchParams(useLocation().search) gives an object representation of your query string parameters
+  //.get("provide a key")
+  console.log(new URLSearchParams(useLocation().search).get("term"));
+  const searchTerm: string | null = new URLSearchParams(
+    useLocation().search
+  ).get("term");
 
   useEffect(() => {
     if (!searchTerm) {
@@ -25,7 +31,7 @@ const Main = () => {
 
   return (
     <div className="Main">
-      <SearchForm setSearchTerm={setSearchTerm} />
+      <SearchForm />
       <ResultsList gifsArray={gifs} />
     </div>
   );

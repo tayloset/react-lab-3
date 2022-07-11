@@ -1,16 +1,14 @@
 import { FormEvent, useState } from "react";
+import { useHistory } from "react-router";
 import "./SearchForm.css";
 
-interface Props {
-  setSearchTerm: (searchTerm: string) => void;
-}
-
-const SearchForm = ({ setSearchTerm }: Props) => {
-  const [gif, setGif] = useState("");
+const SearchForm = () => {
+  const [term, setTerm] = useState("");
+  const history = useHistory();
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
-    setSearchTerm(gif);
+    history.push(`/gifs/search?${new URLSearchParams({ term })}`);
   };
 
   return (
@@ -21,8 +19,8 @@ const SearchForm = ({ setSearchTerm }: Props) => {
         type="text"
         name="search"
         id="search"
-        value={gif}
-        onChange={(e) => setGif(e.target.value)}
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
       />
       <button className="button">Search</button>
     </form>
